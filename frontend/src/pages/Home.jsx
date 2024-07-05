@@ -11,7 +11,6 @@ const Home = () => {
     const [books, setBooks] = useState([])
     const [loading, setLoading] = useState(false)
     const [showType, setShowType] = useState('card')
-    const [showModal, setShowModal] = useState(false)
     const CardBtn = useRef(null)
     const TableBtn = useRef(null)
 
@@ -60,10 +59,8 @@ const Home = () => {
             {loading ? (
                 <Spinner />
             ) : (
-                showType === 'table' ? <BooksTable books={books} setShowModal={setShowModal} /> : <BooksCard books={books} setShowModal={setShowModal} />
+                showType === 'table' ? <BooksTable books={books} setLoading={setLoading} setBooks={setBooks} /> : <BooksCard books={books} setLoading={setLoading} setBooks={setBooks} />
             )}
-
-            {showModal && <BookModal book={book} onClose={() => setShowModal(false)} />}    {/* Modal */}
         </div>
     )
 }

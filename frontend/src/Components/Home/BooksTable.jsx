@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AiOutlineEdit } from 'react-icons/ai'
 import { BsInfoCircle } from 'react-icons/bs'
 import { MdOutlineDelete } from 'react-icons/md'
+import DeleteModal from './DeleteModal'
 
-const BooksTable = ({ books }) => {
+const BooksTable = ({ books, setLoading, setBooks }) => {
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+
     return (
         <table className='w-full border-none '>
             <thead>
@@ -31,12 +34,11 @@ const BooksTable = ({ books }) => {
                                 <Link to={`/books/edit/${book._id}`}>
                                     <AiOutlineEdit className='text-yellow-600 text-2xl' />
                                 </Link>
-                                <Link to={`/books/delete/${book._id}`}>
-                                    <MdOutlineDelete className='text-red-600 text-2xl' />
-                                </Link>
+                                <MdOutlineDelete className='text-red-600 text-2xl' onClick={() => setShowDeleteModal(true)} />
                             </div>
 
                         </td>
+                        {showDeleteModal && <DeleteModal id={book._id} onClose={() => setShowDeleteModal(false)} setLoading={setLoading} setBooks={setBooks} />}      {/* Delete Modal */}
 
                     </tr>
                 ))}

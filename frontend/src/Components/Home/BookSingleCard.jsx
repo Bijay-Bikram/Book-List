@@ -6,9 +6,12 @@ import { BsInfoCircle } from 'react-icons/bs'
 import { BiUserCircle, BiShow } from 'react-icons/bi'
 import { MdOutlineDelete } from 'react-icons/md'
 import BookModal from './BookModal'
+import DeleteModal from './DeleteModal'
 
-const BookSingleCard = ({ book }) => {
+const BookSingleCard = ({ book, setLoading, setBooks }) => {
     const [showModal, setShowModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+
 
     return (
         <div className='border-2 border-green-200 rounded-lg px-4 py-2 m-4 relative hover:shadow-xl hover:shadow-green-100'>
@@ -34,12 +37,12 @@ const BookSingleCard = ({ book }) => {
                 <Link to={`/books/edit/${book._id}`}>
                     <AiOutlineEdit className='text-yellow-600 text-2xl  hover:text-black' />
                 </Link>
-                <Link to={`/books/delete/${book._id}`}>
-                    <MdOutlineDelete className='text-red-600 text-2xl  hover:text-black' />
-                </Link>
+
+                <MdOutlineDelete className='text-red-600 text-2xl  hover:text-black' onClick={() => setShowDeleteModal(true)} />
             </div>
 
-            {showModal && <BookModal book={book} onClose={() => setShowModal(false)} />}    {/* Modal */}
+            {showModal && <BookModal book={book} onClose={() => setShowModal(false)} />}       {/* Details Modal */}
+            {showDeleteModal && <DeleteModal id={book._id} onClose={() => setShowDeleteModal(false)} setLoading={setLoading} setBooks={setBooks} />}      {/* Delete Modal */}
         </div>
     )
 }

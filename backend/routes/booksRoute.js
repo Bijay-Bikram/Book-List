@@ -16,7 +16,7 @@ router.post('/', async (req, res) => { // List new Book
     }
     catch (err) {
         console.log(err);
-        res.status(500).send({ message: error.message });
+        res.status(500).send({ message: err.message });
     }
 })
 
