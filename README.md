@@ -6,7 +6,7 @@ This project covers full concept of frontend and backend. <br>
 
 I honestly say, I have created this project with the help of tutorial from freecodecamp MERN Project https://www.freecodecamp.org/news/mern-stack-crash-course/ <br>
 
-## `Some changes and improvements in this project as follows :` <br>
+## `Some changes and improvements made in this project as follows :` <br>
 
 
 ### Backend
